@@ -1,15 +1,10 @@
-
-import './App.css'
-import Register from './components/RegisterForm'
+import "./App.css";
 
 function App() {
- 
+  return <>
 
-  return (
-    <>
-    <Register/>
-    </>
-  )
+        
+  </>;
 }
 
-export default App
+export default App;
