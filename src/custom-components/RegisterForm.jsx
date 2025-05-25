@@ -7,7 +7,7 @@ function Register() {
     password: "",
   });
 
-  const [message, setMesseage] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleData = (e) => {
     const { name, value } = e.target;
@@ -16,38 +16,42 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setMessage(null);
 
     try {
       const res = await fetch("http://localhost:7000/api/auth/register", {
         method: "POST",
-        headers: { "content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
 
+      console.log(data);
+
       if (res.ok) {
-        setMesseage("Registration successfully. Please login");
+        setMessage(data.msg);
       } else {
-        setMesseage(data.message || "Registration failed");
+        setMessage(data.msg);
       }
     } catch (error) {
       console.log(error, "error");
-      setMesseage("server error");
+      setMessage("server error");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen text-center text-xl  ">
-      <div className="flex flex-wrap flex-col justify-center gap-16  bg-blue-50 h-[500px] w-[500px] border border-solid  ">
+    <div className="flex items-center justify-center min-h-screen text-center text-xl">
+      <div className="flex flex-wrap flex-col justify-center gap-16 bg-blue-50 h-[500px] w-[500px] border border-solid">
         <div>
-          <h1 className="">Registration Form</h1>
+          <h1>Registration Form</h1>
         </div>
 
-        <div className=" flex flex-col gap-5  justify-center  items-center ">
+        <div className="flex flex-col gap-5 justify-center items-center">
           <form onSubmit={handleRegister}>
             <input
-              className="border border-black text-center rounded-2xl w-[300px]"
+              className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="text"
               name="name"
               onChange={handleData}
@@ -56,32 +60,39 @@ function Register() {
             />
 
             <input
-              className="border border-black text-center rounded-2xl w-[300px]"
+              className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="email"
               name="email"
               onChange={handleData}
               required
               placeholder="Enter your email"
             />
+
             <input
-              className="border border-black  text-center rounded-2xl w-[300px]"
+              className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="password"
               name="password"
               onChange={handleData}
               required
               placeholder="Enter your Password"
             />
+
             <div>
               <button
-                className=" ml-auto mr-auto border  w-[300px] bg-blue-200 rounded-2xl  "
+                className="ml-auto mr-auto border w-[300px] bg-blue-200 rounded-2xl p-2 hover:bg-blue-300 transition"
                 type="submit"
               >
                 Submit
               </button>
             </div>
           </form>
-          
-      {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
+
+          {message && (
+            <div
+              className={`mt-4 text-center text-sm p-3  w-[300px] bg-blue-400 rounded-md }`}>
+              {message}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -89,3 +100,5 @@ function Register() {
 }
 
 export default Register;
+
+
