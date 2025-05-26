@@ -1,12 +1,16 @@
 import "./App.css";
 import Register from "./custom-components/RegisterForm";
-// import Dashboard from "./custom-components/Dashboard";
+import { Routes, Route } from "react-router-dom";
+import Login from "./custom-components/LoginForm";
+
 
 function App() {
   return (
     <div>
-      {/* <Dashboard/> */}
-      <Register/>
+     <Routes>
+      <Route path="/" element={<Register/>}/>
+      <Route path="/login" element={<Login/>} />
+      </Routes>
     </div>
   )
 }

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -7,6 +10,7 @@ function Register() {
     password: "",
   });
 
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const handleData = (e) => {
@@ -16,7 +20,6 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setMessage(null);
 
     try {
       const res = await fetch("http://localhost:7000/api/auth/register", {
@@ -28,10 +31,18 @@ function Register() {
 
       const data = await res.json();
 
-      console.log(data);
 
       if (res.ok) {
-        setMessage(data.msg);
+        setMessage("User register successfullly redirecct to login-page");
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 4000);
       } else {
         setMessage(data.msg);
       }
@@ -42,7 +53,21 @@ function Register() {
   };
 
   return (
+    <div>
+      <div className="absolute top-4 right-4 w-[300px]">
+  <div className="flex flex-col items-end gap-2">
+    <p className="text-right text-sm">Already registered?</p>
+    <NavLink 
+      to="/login"
+      className="border bg-blue-300 rounded-2xl px-4 py-2 hover:bg-blue-300 transition text-center w-[200px]"
+    >
+      Login
+    </NavLink>
+  </div>
+</div>
     <div className="flex items-center justify-center min-h-screen text-center text-xl">
+
+     
       <div className="flex flex-wrap flex-col justify-center gap-16 bg-blue-50 h-[500px] w-[500px] border border-solid">
         <div>
           <h1>Registration Form</h1>
@@ -54,6 +79,7 @@ function Register() {
               className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="text"
               name="name"
+              value={formData.name}
               onChange={handleData}
               required
               placeholder="Enter your name"
@@ -63,6 +89,7 @@ function Register() {
               className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="email"
               name="email"
+              value={formData.email}
               onChange={handleData}
               required
               placeholder="Enter your email"
@@ -72,6 +99,7 @@ function Register() {
               className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
               type="password"
               name="password"
+              value={formData.password}
               onChange={handleData}
               required
               placeholder="Enter your Password"
@@ -89,16 +117,16 @@ function Register() {
 
           {message && (
             <div
-              className={`mt-4 text-center text-sm p-3  w-[300px] bg-blue-400 rounded-md }`}>
+              className={`mt-4 text-center text-sm p-3  w-[300px] bg-blue-400 rounded-md }`}
+            >
               {message}
             </div>
           )}
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
 export default Register;
-
-
