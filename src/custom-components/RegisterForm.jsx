@@ -33,7 +33,7 @@ function Register() {
 
 
       if (res.ok) {
-        setMessage("User register successfullly redirecct to login-page");
+        setMessage(data.msg);
         setFormData({
           name: "",
           email: "",

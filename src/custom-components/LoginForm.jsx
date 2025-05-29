@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -10,6 +10,9 @@ function Login() {
     msg: "",
     token: "",
   });
+
+  const navigate = useNavigate();
+
 
   const handleData = (e) => {
     const { name, value } = e.target;
@@ -31,18 +34,30 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        // setMessage(JSON.stringify(data, null, 2));
         setMessage({
           msg: data.msg,
-          token: data.token,
         });
 
+     
+
+        if(data.token) {
+          localStorage.setItem('token', data.token)
+        }else{
+          console.warn('No token recived in login response')
+        }
         setFormData({
           email: "",
           password: "",
         });
+
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
       } else {
-        setMessage(data.msg);
+        setMessage({
+          msg: data.msg,
+          token: "",
+        });
       }
     } catch (error) {
       console.log(error, "error");
