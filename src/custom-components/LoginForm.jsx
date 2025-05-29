@@ -13,7 +13,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-
   const handleData = (e) => {
     const { name, value } = e.target;
 
@@ -38,12 +37,10 @@ function Login() {
           msg: data.msg,
         });
 
-     
-
-        if(data.token) {
-          localStorage.setItem('token', data.token)
-        }else{
-          console.warn('No token recived in login response')
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+        } else {
+          console.warn("No token recived in login response");
         }
         setFormData({
           email: "",
