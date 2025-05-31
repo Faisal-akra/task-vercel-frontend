@@ -3,8 +3,9 @@ import Register from "./custom-components/RegisterForm";
 import { Routes, Route } from "react-router-dom";
 import Login from "./custom-components/LoginForm";
 import Dashboard from "./custom-components/Dashboard";
-import ProtectedRoute from "./custom-components/ProtectedRoute";
-import AuthRedirect from "./custom-components/AuthRedirect";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AuthRedirect from "./routes/AuthRedirect";
+import CreateTaskForm from "./tasksApis/createTask";
 
 function App() {
   return (
@@ -36,6 +37,18 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+
+
+        <Route
+          path="/createTask"
+          element={
+            <ProtectedRoute>
+              <CreateTaskForm/>
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </div>
   );

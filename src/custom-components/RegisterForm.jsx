@@ -74,6 +74,8 @@ function Register() {
         </div>
 
         <div className="flex flex-col gap-5 justify-center items-center">
+
+          
           <form onSubmit={handleRegister}>
             <input
               className="border border-black text-center rounded-2xl w-[300px] mb-4 p-2"
@@ -114,6 +116,8 @@ function Register() {
               </button>
             </div>
           </form>
+
+
 
           {message && (
             <div
