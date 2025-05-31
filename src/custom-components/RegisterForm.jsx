@@ -54,6 +54,7 @@ function Register() {
 
   return (
     <div>
+      
       <div className="absolute top-4 right-4 w-[300px]">
   <div className="flex flex-col items-end gap-2">
     <p className="text-right text-sm">Already registered?</p>

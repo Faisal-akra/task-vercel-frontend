@@ -17,16 +17,19 @@ function CreateTaskForm() {
     setFormData({ ...formData, [name]: value });
   };
 
+  
+
   const fetchCreateTask = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
+    const token = localStorage.getItem('token');
     try {
       const res = await fetch("http://localhost:7000/api/task/createTask", {
         method: "POST",
         credentials: "include",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(formData),
       });
 
@@ -38,7 +41,7 @@ function CreateTaskForm() {
         setFormData({
           title: "",
           description: "",
-          text: "",
+          dueDate: "",
           status: "",
           priority: "",
         });
