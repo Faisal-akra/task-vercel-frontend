@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 
 function CreateTaskForm() {
   const [formData, setFormData] = useState({
@@ -56,6 +58,19 @@ function CreateTaskForm() {
   };
 
   return (
+
+    <div>
+        <div className="absolute top-4 right-4 w-[300px]">
+  <div className="flex flex-col items-end gap-2">
+    <p className="text-right text-sm">Go To Dashboard</p>
+    <NavLink 
+      to="/"
+      className="border bg-blue-300 rounded-2xl px-4 py-2 hover:bg-blue-300 transition text-center w-[200px]"
+    >
+      Dashboard
+    </NavLink>
+  </div>
+</div>
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col gap-8 p-8 bg-blue-50 rounded-lg border border-gray-200 shadow-md">
         <h1 className="text-2xl font-bold text-center">
@@ -133,6 +148,7 @@ function CreateTaskForm() {
             {message}
           </div>
         )}
+      </div>
       </div>
     </div>
   );
