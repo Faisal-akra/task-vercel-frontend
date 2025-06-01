@@ -47,7 +47,8 @@ function Dashboard() {
             <Link to={'/createTask'} className=" flex text-center gap-2 items-center"> <BiTask/> Craete-Task</Link>
            
             <Link to={'/'} className=" flex text-center gap-2 items-center"> <RiDashboardFill/> Dashboard </Link>
-            <p className=" flex text-center gap-2 items-center"> <GrTasks/>Tasks</p>
+            {/* <p className=" flex text-center gap-2 items-center"> <GrTasks/>Tasks</p> */}
+            <Link to={'/allTasks'} className="flex text-center gap-2 items-center"> <GrTasks/> Tasks</Link>
             <p className=" flex text-center gap-2 items-center"> <MdPendingActions/> Pending Tasks</p>
             <p className=" flex text-center gap-2 items-center" > <IoCheckmarkDoneCircle/> Completed Tasks</p>
             <p className=" flex text-center gap-2 items-center" > <LuListTodo/> To-Do Tasks</p>

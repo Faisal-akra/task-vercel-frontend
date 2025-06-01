@@ -6,6 +6,7 @@ import Dashboard from "./custom-components/Dashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import AuthRedirect from "./routes/AuthRedirect";
 import CreateTaskForm from "./tasksApis/createTask";
+import AllTasks from "./tasksApis/All-Tasks";
 
 function App() {
   return (
@@ -45,6 +46,17 @@ function App() {
           element={
             <ProtectedRoute>
               <CreateTaskForm/>
+            </ProtectedRoute>
+          }
+        />
+
+
+        
+        <Route
+          path="/allTasks"
+          element={
+            <ProtectedRoute>
+              <AllTasks/>
             </ProtectedRoute>
           }
         />
