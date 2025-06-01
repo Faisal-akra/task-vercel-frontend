@@ -22,7 +22,7 @@ function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://task-management-seven-self.vercel.app//api/auth/register", {
+      const res = await fetch("https://task-management-seven-self.vercel.app/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
