@@ -22,12 +22,23 @@ function Register() {
     e.preventDefault();
 
     try {
+      // const res = await fetch("https://task-management-seven-self.vercel.app/api/auth/register", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   credentials: "include",
+      //   body: JSON.stringify(formData),
+      // });
+
       const res = await fetch("https://task-management-seven-self.vercel.app/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
+  method: "POST",
+  mode: "cors", // Explicitly enable CORS mode
+  headers: { 
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  credentials: "include",
+  body: JSON.stringify(formData)
+});
 
       const data = await res.json();
 
