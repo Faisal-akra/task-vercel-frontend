@@ -22,7 +22,7 @@ function Register() {
 
     try {
       const res = await fetch(
-        "https://task-management-seven-self.vercel.app/api/auth/register",
+        "http://localhost:7000/api/auth/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -15,7 +15,7 @@ function AllTasks() {
         }
 
         const res = await fetch(
-          "https://task-management-seven-self.vercel.app/api/task/fetchAllTasks",
+          "http://localhost:7000/api/task/fetchallTasks",
           {
             method: "GET",
             credentials: "include",
