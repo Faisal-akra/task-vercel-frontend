@@ -15,7 +15,7 @@ function AllTasks() {
         }
 
         const res = await fetch(
-          "http://localhost:7000/api/task/fetchallTasks",
+          "https://task-vercel-backend.vercel.app/api/task/fetchallTasks",
           {
             method: "GET",
             credentials: "include",
