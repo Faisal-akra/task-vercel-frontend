@@ -72,7 +72,7 @@ function AllTasks() {
   const fetchTaskByPriority = async () => {
     try {
       const res = await fetch(
-        `http://localhost:9000/api/task/fetchTaskByPriority/${formattedPriority}`,
+        `https://backend-task-management-six.vercel.app/api/task/fetchTaskByPriority/${formattedPriority}`,
         {
           method: "GET",
           credentials: "include",

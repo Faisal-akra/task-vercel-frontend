@@ -9,7 +9,7 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { LuListTodo } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
 import tasks from "../assets/Dashboard/tasks.png";
-import note from "../assets/Dashboard/ok.png";
+import note from "../assets/Dashboard/note.png";
 
 function Dashboard() {
   const [name, setName] = useState("");
@@ -32,7 +32,7 @@ function Dashboard() {
     if (!token) return;
 
     try {
-      const res = await fetch("http://localhost:9000/api/auth/getProfile", {
+      const res = await fetch("https://backend-task-management-six.vercel.app/api/auth/getProfile", {
         method: "GET",
         credentials: "include",
         headers: {

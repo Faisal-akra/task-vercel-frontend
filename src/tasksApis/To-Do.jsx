@@ -16,7 +16,7 @@ function ToDoTAsk() {
   const toDoTask = async () => {
     try {
       const res = await fetch(
-        "http://localhost:9000/api/task/fetchTaskByStatus/To-Do",
+        "https://backend-task-management-six.vercel.app/api/task/fetchTaskByStatus/To-Do",
         {
           method: "GET",
           credentials: "include",
