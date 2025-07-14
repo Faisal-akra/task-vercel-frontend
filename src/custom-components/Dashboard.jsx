@@ -96,11 +96,10 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className=""></div>
+        
 
-          <div >
-
-            <div className="flex justify-evenly w-[800px]">
+          <div className="mr-24">
+            <div className="flex justify-evenly w-[800px] ">
               <p>Completed</p>
               <p>Pending</p>
               <p>To-Do</p>
@@ -109,7 +108,6 @@ function Dashboard() {
             <div className="flex justify-center items-center">
               <img src={tasks} alt="tasks" className="w-[400px] h-[400px]" />
             </div>
-            
           </div>
         </div>
       </div>
