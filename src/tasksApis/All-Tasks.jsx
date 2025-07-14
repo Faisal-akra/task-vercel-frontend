@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { data, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function AllTasks() {
   const [tasks, setTasks] = useState([]);
@@ -25,12 +25,21 @@ function AllTasks() {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage(data.msg);
-        setTasks(data.task);
+        if (data.task && data.task.length > 0) {
+          setTasks(data.task);
+          setMessage(data.msg || "Tasks loaded successfully");
+        } else {
+          setTasks([]);
+
+          setMessage(
+            data.msg === "No tasks available" ? data.msg : "No tasks found"
+          );
+        }
       }
     } catch (error) {
-      console.log(error);
-      setMessage(data.error);
+      console.error("Fetch error:", error);
+      setMessage("Network error - could not fetch tasks");
+      setTasks([]);
     }
   };
 
@@ -56,7 +65,7 @@ function AllTasks() {
       }
     } catch (error) {
       console.log(error);
-      setMessage(data.error);
+      setMessage("error");
     }
   };
 
@@ -82,7 +91,7 @@ function AllTasks() {
       }
     } catch (error) {
       console.log(error);
-      setMessage(data.error);
+      setMessage("error");
     }
   };
 
@@ -90,14 +99,10 @@ function AllTasks() {
     fetchTask();
   }, []);
 
-
   return (
     <div className="">
       <div className="flex justify-between items-center m-1 bg-blue-300 ">
-
-
         <div className="flex  justify-evenly gap-5 p-4  ">
-
           <p className="text-2xl">{message}</p>
 
           <input

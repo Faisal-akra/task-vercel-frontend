@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-function PendingTask() {
+function CompletedTask() {
   const [tasks, setTasks] = useState([]);
   const [message, setMessage] = useState("");
   const token = localStorage.getItem("token");
@@ -10,13 +10,13 @@ function PendingTask() {
       alert("Token is expired or missing");
       return;
     }
-    pendingTasks();
+    completedTask();
   }, [token]);
 
-  const pendingTasks = async () => {
+  const completedTask = async () => {
     try {
       const res = await fetch(
-        "http://localhost:9000/api/task/fetchTaskByStatus/Pending",
+        "http://localhost:9000/api/task/fetchTaskByStatus/Completed",
         {
           method: "GET",
           credentials: "include",
@@ -44,6 +44,7 @@ function PendingTask() {
       setTasks([]);
     }
   };
+
   return (
     <div>
       <div className="flex justify-between items-center m-1 bg-blue-300 ">
@@ -101,4 +102,4 @@ function PendingTask() {
   );
 }
 
-export default PendingTask;
+export default CompletedTask;

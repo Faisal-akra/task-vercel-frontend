@@ -7,6 +7,9 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import AuthRedirect from "./routes/AuthRedirect";
 import CreateTaskForm from "./tasksApis/createTask";
 import AllTasks from "./tasksApis/All-Tasks";
+import PendingTask from "./tasksApis/pending";
+import CompletedTask from "./tasksApis/Completed";
+import ToDoTAsk from "./tasksApis/To-Do";
 
 function App() {
   return (
@@ -39,27 +42,52 @@ function App() {
           }
         />
 
-
-
         <Route
           path="/createTask"
           element={
             <ProtectedRoute>
-              <CreateTaskForm/>
+              <CreateTaskForm />
             </ProtectedRoute>
           }
         />
 
-
-        
         <Route
           path="/allTasks"
           element={
             <ProtectedRoute>
-              <AllTasks/>
+              <AllTasks />
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/pending"
+          element={
+            <ProtectedRoute>
+              <PendingTask />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/completed"
+          element={
+            <ProtectedRoute>
+              <CompletedTask />
+            </ProtectedRoute>
+          }
+        />
+
+
+<Route
+          path="/todo"
+          element={
+            <ProtectedRoute>
+              <ToDoTAsk />
+            </ProtectedRoute>
+          }
+        />
+
 
       </Routes>
     </div>
