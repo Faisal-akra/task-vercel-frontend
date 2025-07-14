@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiTask } from "react-icons/bi";
 import { GrTasks } from "react-icons/gr";
@@ -8,10 +8,13 @@ import { MdPendingActions } from "react-icons/md";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { LuListTodo } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
-import note from "../assets/Dashboard/sidebar.png";
 import tasks from "../assets/Dashboard/tasks.png";
+import note from "../assets/Dashboard/ok.png"
+
 
 function Dashboard() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +28,36 @@ function Dashboard() {
     navigate("/login");
   };
 
+  const profile = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const res = await fetch("http://localhost:9000/api/auth/getProfile", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setEmail(data.email);
+        setName(data.name);
+      } else {
+        console.error(data.message || "Failed to fetch profile.");
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    profile();
+  }, []);
+
   return (
     <div className="">
       <div className="m-5 ">
@@ -32,16 +65,16 @@ function Dashboard() {
           <h1 className="font-extrabold text-xl">Task-Management</h1>
         </div>
 
-        <div className="flex justify-between gap-4  relative overflow-hidden">
+        <div className="flex justify-between gap-4  relative overflow-hidden font-extrabold">
           <div className="relative gap-3 flex flex-col font-bold w-[200px] p-5 z-10">
             <img
               src={note}
               alt="note"
-              className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 z-0"
             />
-            <div className="text-center mb-4 z-10">
-              <p className="font-bold">Name</p>
-              <p>zjan45097@gmail.com</p>
+            <div className="text-center mb-4 z-10 font-extrabold">
+              <p className="font-bold">{name}</p>
+              <p>{email}</p>
             </div>
 
             <div className="flex flex-col gap-3 z-10">
@@ -95,8 +128,6 @@ function Dashboard() {
               </button>
             </div>
           </div>
-
-        
 
           <div className="mr-24">
             <div className="flex justify-evenly w-[800px] ">
