@@ -9,8 +9,7 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { LuListTodo } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
 import tasks from "../assets/Dashboard/tasks.png";
-import note from "../assets/Dashboard/ok.png"
-
+import note from "../assets/Dashboard/ok.png";
 
 function Dashboard() {
   const [name, setName] = useState("");
@@ -131,9 +130,15 @@ function Dashboard() {
 
           <div className="mr-24">
             <div className="flex justify-evenly w-[800px] ">
-              <p>Completed</p>
-              <p>Pending</p>
-              <p>To-Do</p>
+              <Link to={"/completed"} className="hover:underline">
+                Completed
+              </Link>
+              <Link to={"/pending"} className="hover:underline">
+                Pending
+              </Link>
+              <Link to={"/todo"} className="hover:underline">
+                To-Do
+              </Link>
             </div>
 
             <div className="flex justify-center items-center">
