@@ -13,7 +13,7 @@ function AllTasks() {
 
   const fetchTask = async () => {
     try {
-      const res = await fetch("http://localhost:9000/api/task/fetchTask", {
+      const res = await fetch("https://backend-task-management-six.vercel.app/api/task/fetchTask", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -46,7 +46,7 @@ function AllTasks() {
   const fetchTaskByStatus = async () => {
     try {
       const res = await fetch(
-        `http://localhost:9000/api/task/fetchTaskByStatus/${formattedStatus}`,
+        `https://backend-task-management-six.vercel.app/api/task/fetchTaskByStatus/${formattedStatus}`,
         {
           method: "GET",
           credentials: "include",
