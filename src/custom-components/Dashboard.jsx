@@ -32,7 +32,7 @@ function Dashboard() {
     if (!token) return;
 
     try {
-      const res = await fetch("https://backend-task-management-six.vercel.app/api/auth/getProfile", {
+      const res = await fetch("http://localhost:9000/api/auth/getProfile", {
         method: "GET",
         credentials: "include",
         headers: {
