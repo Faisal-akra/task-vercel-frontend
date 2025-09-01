@@ -5,6 +5,9 @@ function PendingTask() {
   const [message, setMessage] = useState("");
   const token = localStorage.getItem("token");
 
+
+
+
   useEffect(() => {
     if (!token) {
       alert("Token is expired or missing");
@@ -13,6 +16,9 @@ function PendingTask() {
     pendingTasks();
   }, [token]);
 
+
+
+  
   const pendingTasks = async () => {
     try {
       const res = await fetch(
@@ -44,18 +50,18 @@ function PendingTask() {
       setTasks([]);
     }
   };
-  return (
-    <div>
-      <div className="flex justify-between items-center m-1 bg-blue-300 ">
-        <div className="flex  justify-evenly gap-5 p-4  ">
-          <p className="text-2xl">{message}</p>
+    return (
+    <div className="">
+      <div className="flex justify-between items-center m-2 p-4 bg-gray-100 rounded-lg shadow-sm">
+        <div className="flex items-center gap-6">
+          <p className="text-2xl font-semibold text-gray-800">{message}</p>
         </div>
 
-        <div className="flex flex-col items-end gap-2">
-          <p className="text-right text-sm ">Go To Dashboard</p>
+        <div className="flex flex-col items-end gap-1">
+          <p className="text-right text-sm text-gray-500">Go To Dashboard</p>
           <NavLink
             to="/"
-            className="border bg-blue-400 rounded-2xl px-4 py-2 hover:bg-blue-600 transition text-center w-[180px]"
+            className="bg-gray-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 transition-colors w-[180px] text-center shadow"
           >
             Dashboard
           </NavLink>
@@ -63,35 +69,45 @@ function PendingTask() {
       </div>
 
       <div className="overflow-x-auto text-center">
-        <ul className="min-w-[800px]">
+        <ul className="min-w-[900px]">
           {tasks.map((task) => (
             <div
               key={task._id}
-              className="bg-blue-100 m-6 border flex items-center"
+              className="m-6 flex items-start gap-6 bg-white rounded-2xl shadow-lg border border-gray-200 p-4"
             >
-              <div className="w-1/4 p-2 overflow-y-auto max-h-[100px]">
-                <p className="border bg-slate-300 font-bold">Title</p>
-                <p className="break-words">{task.title}</p>
+              <div className="w-1/4 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 border-b pb-1 mb-2">
+                  Title
+                </h3>
+                <p className="text-gray-700 break-words">{task.title}</p>
               </div>
 
-              <div className="w-2/4 p-2 overflow-y-auto max-h-[100px]">
-                <p className="border bg-slate-300 font-bold">Description</p>
-                <p className="break-words">{task.description}</p>
+              <div className="w-2/4 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 border-b pb-1 mb-2">
+                  Description
+                </h3>
+                <p className="text-gray-700 break-words">{task.description}</p>
               </div>
 
-              <div className="w-1/6 p-2">
-                <p className="border bg-slate-300 font-bold">Due-Date</p>
-                <p>{task.dueDate}</p>
+              <div className="w-1/6 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 border-b pb-1 mb-2">
+                  Due Date
+                </h3>
+                <p className="text-gray-700">{task.dueDate}</p>
               </div>
 
-              <div className="w-1/6 p-2">
-                <p className="border bg-slate-300 font-bold">Status</p>
-                <p>{task.status}</p>
+              <div className="w-1/6 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 border-b pb-1 mb-2">
+                  Status
+                </h3>
+                <p className="text-gray-700">{task.status}</p>
               </div>
 
-              <div className="w-1/6 p-2">
-                <p className="border bg-slate-300 font-bold">Priority</p>
-                <p>{task.priority}</p>
+              <div className="w-1/6 text-left">
+                <h3 className="text-lg font-semibold text-gray-800 border-b pb-1 mb-2">
+                  Priority
+                </h3>
+                <p className="text-gray-700">{task.priority}</p>
               </div>
             </div>
           ))}
@@ -99,6 +115,7 @@ function PendingTask() {
       </div>
     </div>
   );
+
 }
 
 export default PendingTask;
